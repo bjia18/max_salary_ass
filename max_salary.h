@@ -11,7 +11,7 @@
 #define LEN ((CHAR_BIT * sizeof(int) - 1) / 3 + 2)+1
 
 extern double h_max;
-void naive(int *a,int n);
+void fast(int *a,int n);
 void stress_test(int n, int m);
 void simple_test(int n, int m);
 int is_better(const void *a, const void *b);

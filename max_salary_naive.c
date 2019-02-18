@@ -1,6 +1,6 @@
 #include "max_salary.h"
 
-int * best_arr;
+//int * best_arr;
 
 void print_array(int *arr, int size){
   for (int i=0; i<size; i++){
@@ -9,23 +9,7 @@ void print_array(int *arr, int size){
   printf("\n");
 }
 
-int is_better(const void *a,const void *b){
-  const int *ia=(const int *)a;
-  const int *ib=(const int *)b;
-  char str1[LEN],str2[LEN],temp[LEN];
-  sprintf(str1, "%d", *ia);
-  sprintf(temp, "%d", *ib);
-  strcpy(str2,temp);
-  strcat(str2,str1);//str2 in front
-  strcat(str1,temp);//str1 in front
-  //printf("STR: %s %s\n",str1,str2);
-  return (atof(str2)>atof(str1))?(1):(0);//str2 vs str1
-  //printf("atoi: %d\n",a[0]);
-}
 double h_max=0;
-void naive(int *a,int n){
-        qsort(a, n, sizeof(int), is_better);
-}
 
 // Generating permutation using Heap Algorithm 
 void heap_permutation(int a[], int size, int n) 
@@ -37,6 +21,7 @@ void heap_permutation(int a[], int size, int n)
         double temp=combine_max(a,n);
         if (temp>h_max)
           h_max=temp;
+          //memcpy(best_arr, a, sizeof(best_arr));
         return; 
     } 
   

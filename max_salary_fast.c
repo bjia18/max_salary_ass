@@ -11,6 +11,24 @@ double combine_max(int *c, int n){//find bigger value of heap's permutation
   return max;
 }
 
+void fast(int *a,int n){
+        qsort(a, n, sizeof(int), is_better);
+}
+
+int is_better(const void *a,const void *b){
+  const int *ia=(const int *)a;
+  const int *ib=(const int *)b;
+  char str1[LEN],str2[LEN],temp[LEN];
+  sprintf(str1, "%d", *ia);
+  sprintf(temp, "%d", *ib);
+  strcpy(str2,temp);
+  strcat(str2,str1);//str2 in front
+  strcat(str1,temp);//str1 in front
+  //printf("STR: %s %s\n",str1,str2);
+  return (atof(str2)>atof(str1))?(1):(0);//str2 vs str1
+  //printf("atoi: %d\n",a[0]);
+}
+
 void stress_test(int n,int m){
     srand(time(NULL)); // randomize seed
     int a[n];
@@ -31,7 +49,7 @@ void stress_test(int n,int m){
         }
         print_array(a,n);
         heap_permutation(a, n, n); 
-        naive(a,n);
+        fast(a,n);
         double max=combine_max(a,n);//to compare max & h_max as 2 doubles
         if (h_max!=max){//strcmp requires turning h_max back to string & has the same O(n) as array comparison and combine_max
             printf("WRONG: h_max: %f, max: %f",h_max,max);//I could have returned strings for h_max and array a but it doesn't increase the limit of double; 
@@ -61,9 +79,9 @@ void simple_test(int n, int m){
     }
     print_array(a,n);
     heap_permutation(a, n, n); 
-    naive(a,n);
+    fast(a,n);
     double max=combine_max(a,n);
-    printf("naive: %f\nheap: %f\n",max,h_max);
+    printf("fast: %f\nheap: %f\n",max,h_max);
 }
 
 int main(int argc, char **argv) {
