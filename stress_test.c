@@ -65,7 +65,7 @@ void simple_test(int n, int m){
     double max=combine_max(a,n);
     printf("naive: %f\nheap: %f\n",max,h_max);
 }
-// Code to test permutations
+
 int main(int argc, char **argv) {
   if (argc<4||atoi(argv[3])<0||atoi(argv[3])>1){
     printf("test <N> <M> <mode>\nN=# of elements in array, M=# of digits in each integer\nmode=0 is stress test, 1 is simple test\n");
