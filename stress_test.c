@@ -60,23 +60,17 @@ void simple_test(int n, int m){
             a[j]=atoi(str);
     }
     print_array(a,n);
-    if (n*m<=50){
-        heap_permutation(a, n, n); 
-        naive(a,n);
-        double max=combine_max(a,n);
-        printf("naive: %f\nheap: %f\n",max,h_max);
-    } else{
-        naive(a,n);
-        printf("over float limit:\nnaive:\n");
-        print_array(a,n);
-    }
+    heap_permutation(a, n, n); 
+    naive(a,n);
+    double max=combine_max(a,n);
+    printf("naive: %f\nheap: %f\n",max,h_max);
 }
 
 int main(int argc, char **argv) {
   if (argc<4||atoi(argv[3])<0||atoi(argv[3])>1){
-    printf("test <N> <M> <mode>\nN=# of elements in array, M=# of digits in each integer\nmode=0 is stress test, 1 is simple test\nsimple test of qsort is only limited by the integer limit (6), not the double limit (30)\n");
+    printf("test <N> <M> <mode>\nN=# of elements in array, M=# of digits in each integer\nmode=0 is stress test, 1 is simple test\n");
     exit(1);
-  } else if (atoi(argv[2])>6||atoi(argv[2])<=0||atoi(argv[1])<=0||(atoi(argv[1])*atoi(argv[2])>50 && atoi(argv[3])==0)){
+  } else if (atoi(argv[2])>6||atoi(argv[2])<=0||atoi(argv[1])<=0||atoi(argv[1])*atoi(argv[2])>50){
     printf("N= positive integer, M= positive integer <= 6\nN*M can't be bigger than 50 (arbitrary max digits of float)");
     exit(1);
   }
