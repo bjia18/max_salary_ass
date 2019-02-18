@@ -11,9 +11,9 @@
 #define LEN ((CHAR_BIT * sizeof(int) - 1) / 3 + 2)+1
 
 extern double h_max;
-double naive(int *a,int n);
+void naive(int *a,int n);
 void stress_test(int n, int m);
-void copy_array(int *a,int *c,int n);
+void simple_test(int n, int m);
 int is_better(const void *a, const void *b);
 double combine_max(int *a, int n);
 void print_array(int *arr, int size);

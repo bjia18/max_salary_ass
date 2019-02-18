@@ -12,8 +12,5 @@ stress_test.o: stress_test.c max_salary.h
 test: max_salary_naive.o stress_test.o
 	$(CC) $(CFLAGS) -o test max_salary_naive.o stress_test.o
 
-#test: max_salary_naive.c max_salary.h\
-	$(CC) $(CFLAGS) max_salary_naive.c max_salary.h -o test
-
 clean:
 	rm *.o test

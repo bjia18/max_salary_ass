@@ -8,16 +8,7 @@ void print_array(int *arr, int size){
   }
   printf("\n");
 }
-double combine_max(int *c, int n){
-  char str[LEN*n];
-  sprintf(str, "%d", c[0]);
-  for (int i=1; i<n; i++){
-    sprintf(str+strlen(str), "%d", c[i]);
-  }
-  //printf("STR: %s\n",str);
-  double max=atof(str);
-  return max;
-}
+
 int is_better(const void *a,const void *b){
   const int *ia=(const int *)a;
   const int *ib=(const int *)b;
@@ -31,18 +22,9 @@ int is_better(const void *a,const void *b){
   return (atof(str2)>atof(str1))?(1):(0);//str2 vs str1
   //printf("atoi: %d\n",a[0]);
 }
-void copy_array(int *a,int *c,int n){
-  for (int i=0; i<n; i++){
-    c[i]=a[i];
-  }
-}
 double h_max=0;
-double naive(int *a,int n){
-        int c[n];
-        copy_array(a,c,n);
-        qsort(c, n, sizeof(int), is_better);
-        double max=combine_max(c,n);
-        return max;
+void naive(int *a,int n){
+        qsort(a, n, sizeof(int), is_better);
 }
 
 // Generating permutation using Heap Algorithm 
