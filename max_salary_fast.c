@@ -62,7 +62,6 @@ void simple_test(int *a, int n){
 }
 
 int main(int argc, char **argv) {
-  //int a[]={21, 2, 9};
   if (argc<4||atoi(argv[3])<0||atoi(argv[3])>1||(atoi(argv[3])==1 && argc<5)){
     printf("stress test: test <N> <M> <mode>\nsimple test: test <N> <M> <mode> <array>\nN=# of elements in array, M=maximum # of digits in each integer\nmode=0 is stress test, 1 is simple test\n");
     exit(1);
