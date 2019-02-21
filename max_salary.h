@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
+#include <math.h>
 
 #define SWAP(a,b) {int temp; temp=a; a=b; b=temp;}
 #define LEN ((CHAR_BIT * sizeof(int) - 1) / 3 + 2)+1

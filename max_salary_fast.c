@@ -32,20 +32,11 @@ int is_better(const void *a,const void *b){
 void stress_test(int n,int m){
     srand(time(NULL)); // randomize seed
     int a[n];
-    char str[LEN];
-    static char nums[11]="0123456789";
     //printf("%d,%d\n",n,m);
+    double temp=m;
     while (1){
         for (int j=0;j<n;j++){
-            for(int i=0;i<m;i++){
-                str[i] = nums[rand()%10];
-                while (str[0]-'0'==0){
-                    str[0] = nums[rand()%10];
-                }
-                //printf("%c ",str[i]);
-            }
-            //printf("%s ",str);
-            a[j]=atoi(str);
+            a[j]=rand()%(int)pow(10,temp);
         }
         print_array(a,n);
         heap_permutation(a, n, n); 
@@ -64,18 +55,9 @@ void stress_test(int n,int m){
 void simple_test(int n, int m){
     srand(time(NULL)); // randomize seed
     int a[n];
-    char str[LEN];
-    static char nums[11]="0123456789";
+    double temp=m;
     for (int j=0;j<n;j++){
-            for(int i=0;i<m;i++){
-                str[i] = nums[rand()%10];
-                while (str[0]-'0'==0){
-                    str[0] = nums[rand()%10];
-                }
-                //printf("%c ",str[i]);
-            }
-            //printf("%s ",str);
-            a[j]=atoi(str);
+            a[j]=rand()%(int)pow(10,temp);
     }
     print_array(a,n);
     heap_permutation(a, n, n); 
@@ -86,7 +68,7 @@ void simple_test(int n, int m){
 
 int main(int argc, char **argv) {
   if (argc<4||atoi(argv[3])<0||atoi(argv[3])>1){
-    printf("test <N> <M> <mode>\nN=# of elements in array, M=# of digits in each integer\nmode=0 is stress test, 1 is simple test\n");
+    printf("test <N> <M> <mode>\nN=# of elements in array, M=maximum # of digits in each integer\nmode=0 is stress test, 1 is simple test\n");
     exit(1);
   } else if (atoi(argv[2])>6||atoi(argv[2])<=0||atoi(argv[1])<=0||atoi(argv[1])*atoi(argv[2])>50){
     printf("N= positive integer, M= positive integer <= 6\nN*M can't be bigger than 50 (arbitrary max digits of float)");
