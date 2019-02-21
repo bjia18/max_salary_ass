@@ -13,6 +13,7 @@ double combine_max(int *c, int n){//find bigger value of heap's permutation
 
 void fast(int *a,int n){
         qsort(a, n, sizeof(int), is_better);
+        print_array(a,n);
 }
 
 int is_better(const void *a,const void *b){
@@ -52,13 +53,7 @@ void stress_test(int n,int m){
     }
     //printf("H_MAX: %f\n",h_max);
 }
-void simple_test(int n, int m){
-    srand(time(NULL)); // randomize seed
-    int a[n];
-    double temp=m;
-    for (int j=0;j<n;j++){
-            a[j]=rand()%(int)pow(10,temp);
-    }
+void simple_test(int *a, int n){
     print_array(a,n);
     heap_permutation(a, n, n); 
     fast(a,n);
@@ -67,18 +62,28 @@ void simple_test(int n, int m){
 }
 
 int main(int argc, char **argv) {
-  if (argc<4||atoi(argv[3])<0||atoi(argv[3])>1){
-    printf("test <N> <M> <mode>\nN=# of elements in array, M=maximum # of digits in each integer\nmode=0 is stress test, 1 is simple test\n");
+  //int a[]={21, 2, 9};
+  if (argc<4||atoi(argv[3])<0||atoi(argv[3])>1||(atoi(argv[3])==1 && argc<5)){
+    printf("stress test: test <N> <M> <mode>\nsimple test: test <N> <M> <mode> <array>\nN=# of elements in array, M=maximum # of digits in each integer\nmode=0 is stress test, 1 is simple test\n");
     exit(1);
-  } else if (atoi(argv[2])>6||atoi(argv[2])<=0||atoi(argv[1])<=0||atoi(argv[1])*atoi(argv[2])>50){
-    printf("N= positive integer, M= positive integer <= 6\nN*M can't be bigger than 50 (arbitrary max digits of float)");
+  } else if (atoi(argv[2])>6||atoi(argv[2])<=0||atoi(argv[1])<=0||atoi(argv[1])*atoi(argv[2])>50||argc>5){
+    printf("N= positive integer, M= positive integer <= 6\nN*M can't be bigger than 50 (arbitrary max digits of float)\narray: 1,2,34,5 shouldn't be separated by space\n");
     exit(1);
   }
   int n=atoi(argv[1]), m=atoi(argv[2]);
   if (atoi(argv[3])==0){
         stress_test(n,m);
   } else{
-        simple_test(n,m);
+        int a[n];
+        int i=0;
+        char* token = strtok(argv[4], ","); 
+
+        while (token != NULL) { 
+          a[i]=atoi(token); 
+          i++;
+          token = strtok(NULL, ","); 
+        } 
+        simple_test(a,n);
     }
   
   

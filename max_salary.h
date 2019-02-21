@@ -14,7 +14,7 @@
 extern double h_max;
 void fast(int *a,int n);
 void stress_test(int n, int m);
-void simple_test(int n, int m);
+void simple_test(int *a, int n);
 int is_better(const void *a, const void *b);
 double combine_max(int *a, int n);
 void print_array(int *arr, int size);
